@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import './authentification_screen.dart';
+import 'package:winkle/Screens/masterpassword_screen.dart';
 import '../Components/hex_color.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../constants.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const routeName = '/welcome-screen';
@@ -116,6 +118,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 onPressed: () {
                   print(emailController);
                   print(passwordController);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MasterPasswordScreen()),
+                  );
                 },
                 child: const Text(
                   'Entrar',
@@ -158,63 +165,69 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: HexColor("#1F2937"),
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light,
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+    return WillPopScope(
+        onWillPop: () => Future.value(false),
+        child: Scaffold(
+            backgroundColor: HexColor(Constants.winkleBG),
+            body: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: Stack(
                 children: [
-                  Expanded(
-                    flex: 6,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Image(
-                            height: 200,
-                            image: NetworkImage(
-                                'https://www.winkle.app/assets/logo-white.2cf3acf2.png')),
-                        Text(
-                          "Winkle",
-                          style: TextStyle(
-                            fontSize: 55,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          'Gerenciador de Senhas',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic,
-                              color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Visibility(
-                      visible: !_isShowingLogin,
-                      child: Expanded(
-                        flex: 3,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 6,
                         child: Column(
-                          children: [
-                            authentificationButton(Colors.indigo, 'Entrar',
-                                Colors.white, context, toggleLogin),
-                            authentificationButton(Colors.white, 'Cadastrar',
-                                Colors.lightBlue, context, launchURL),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Image(
+                                height: 200,
+                                image: NetworkImage(
+                                    'https://www.winkle.app/assets/logo-white.2cf3acf2.png')),
+                            Text(
+                              "Winkle",
+                              style: TextStyle(
+                                fontSize: 55,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              'Gerenciador de Senhas',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontStyle: FontStyle.italic,
+                                  color: Colors.white),
+                            ),
                           ],
                         ),
-                      )),
-                  Visibility(
-                    visible: _isShowingLogin,
-                    child: Stack(children: [loginForm()]),
+                      ),
+                      Visibility(
+                          visible: !_isShowingLogin,
+                          child: Expanded(
+                            flex: 3,
+                            child: Column(
+                              children: [
+                                authentificationButton(Colors.indigo, 'Entrar',
+                                    Colors.white, context, toggleLogin),
+                                authentificationButton(
+                                    Colors.white,
+                                    'Cadastrar',
+                                    Colors.lightBlue,
+                                    context,
+                                    launchURL),
+                              ],
+                            ),
+                          )),
+                      Visibility(
+                        visible: _isShowingLogin,
+                        child: Stack(children: [loginForm()]),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        ));
+            )));
   }
 }

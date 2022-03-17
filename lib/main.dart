@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './Screens/authentification_screen.dart';
+import 'Screens/masterpassword_screen.dart';
 import './Screens/welcome_screen.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       home: const WelcomeScreen(),
       routes: {
         WelcomeScreen.routeName: (context) => const WelcomeScreen(),
-        AuthentificationScreen.routeName: (context) => AuthentificationScreen(),
+        MasterPasswordScreen.routeName: (context) => MasterPasswordScreen(),
       },
     );
   }
