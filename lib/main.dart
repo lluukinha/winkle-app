@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:winkle/Screens/dashboard_screen.dart';
 import 'Screens/masterpassword_screen.dart';
 import './Screens/welcome_screen.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         WelcomeScreen.routeName: (context) => const WelcomeScreen(),
         MasterPasswordScreen.routeName: (context) => MasterPasswordScreen(),
+        DashboardScreen.routeName: (context) => const DashboardScreen()
       },
     );
   }

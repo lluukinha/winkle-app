@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:winkle/Screens/welcome_screen.dart';
+import 'package:winkle/Screens/dashboard_screen.dart';
 import '../constants.dart';
 import '../Components/hex_color.dart';
 
 class MasterPasswordScreen extends StatelessWidget {
-  static const routeName = '/dashboard-screen';
+  static const routeName = '/master-password-screen';
 
   final masterPasswordController = TextEditingController();
 
@@ -12,8 +12,7 @@ class MasterPasswordScreen extends StatelessWidget {
 
   Widget backButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => Navigator.popUntil(
-          context, ModalRoute.withName(WelcomeScreen.routeName)),
+      onPressed: () => Navigator.popUntil(context, ModalRoute.withName('/')),
       child: const Text(
         "(Sair)",
         style: TextStyle(
@@ -75,7 +74,7 @@ class MasterPasswordScreen extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MasterPasswordScreen()),
+            MaterialPageRoute(builder: (context) => const DashboardScreen()),
           );
         },
         child: const Text(
