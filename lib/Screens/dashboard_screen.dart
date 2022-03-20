@@ -35,6 +35,7 @@ Route _masterRoute() {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _currentIndex = 0;
+  bool isCreating = false;
   List<String> titles = ["Senhas", "Meus dados"];
 
   void changeIndex(int newIndex) {
@@ -57,6 +58,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
 
+  void setCreation(bool newValue) {
+    setState(() {
+      isCreating = newValue;
+    });
+  }
+
+  Widget renderFloatingAction() {
+    if (!isCreating) {
+      return FloatingActionButton(
+          elevation: 0.0,
+          child: const Icon(Icons.add),
+          backgroundColor: HexColor(Constants.winkleDark),
+          onPressed: () => setCreation(true));
+    }
+
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton.extended(
+              onPressed: () {},
+              backgroundColor: HexColor(Constants.winkleDark),
+              icon: const Icon(Icons.key),
+              label: const Text('Nova senha')),
+          const SizedBox(height: 10),
+          FloatingActionButton.extended(
+            icon: const Icon(Icons.create_new_folder),
+            label: const Text("Nova categoria"),
+            onPressed: () => {},
+            backgroundColor: HexColor(Constants.winkleDark),
+            heroTag: null,
+          )
+        ]);
+  }
+
   PageController pageController = PageController();
 
   @override
@@ -64,9 +100,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return WillPopScope(
         onWillPop: () => Future.value(false),
         child: Scaffold(
-          backgroundColor: HexColor(Constants.winkleBG),
+          backgroundColor: Colors.grey.shade300,
           appBar: AppBar(
-            backgroundColor: HexColor("#111827"),
+            backgroundColor: HexColor(Constants.winkleDark),
             title: Text(titles[_currentIndex]),
             automaticallyImplyLeading: false,
             actions: [
@@ -78,20 +114,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ))
             ],
           ),
-          body: PageView(
-            controller: pageController,
-            onPageChanged: changePage,
-            children: [
-              const PasswordScreen(),
-              Container(color: Colors.yellow),
-            ],
-          ),
+          body: GestureDetector(
+              onTap: () => setCreation(false),
+              child: PageView(
+                controller: pageController,
+                onPageChanged: changePage,
+                children: [
+                  const PasswordScreen(),
+                  Container(color: Colors.yellow),
+                ],
+              )),
+          floatingActionButton: Visibility(
+              visible: _currentIndex == 0, child: renderFloatingAction()),
           bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: HexColor("#111827"),
+              backgroundColor: HexColor(Constants.winkleDark),
               unselectedItemColor: Colors.white38,
               selectedItemColor: Colors.white,
-              // selectedFontSize: 16,
-              // selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
               onTap: changeIndex,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(icon: Icon(Icons.key), label: 'Senhas'),
