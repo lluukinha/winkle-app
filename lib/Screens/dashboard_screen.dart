@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:winkle/Screens/Dashboard/password_screen.dart';
+import 'package:winkle/Screens/Dashboard/Passwords/create_folder_screen.dart';
+import 'package:winkle/Screens/Dashboard/Passwords/password_screen.dart';
 import 'package:winkle/Screens/masterpassword_screen.dart';
 
 import '../Components/hex_color.dart';
 import '../constants.dart';
+import 'Dashboard/Passwords/create_password_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   static const routeName = '/dashboard-screen';
@@ -78,7 +80,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton.extended(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, CreatePasswordScreen.routeName);
+              },
               backgroundColor: HexColor(Constants.winkleDark),
               icon: const Icon(Icons.key),
               label: const Text('Nova senha')),
@@ -86,7 +90,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           FloatingActionButton.extended(
             icon: const Icon(Icons.create_new_folder),
             label: const Text("Nova categoria"),
-            onPressed: () => {},
+            onPressed: () =>
+                {Navigator.pushNamed(context, CreateFolderScreen.routeName)},
             backgroundColor: HexColor(Constants.winkleDark),
             heroTag: null,
           )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:winkle/Components/Dashboard/Passwords/password_card.dart';
+import 'package:winkle/Screens/Dashboard/Passwords/edit_folder_screen.dart';
 
 class PasswordFolder extends StatefulWidget {
   const PasswordFolder({Key? key}) : super(key: key);
@@ -48,7 +49,9 @@ class _PasswordFolderState extends State<PasswordFolder> {
               dense: true,
               trailing: TextButton(
                   style: folderButtonStyle(),
-                  onPressed: null,
+                  onPressed: () {
+                    Navigator.pushNamed(context, EditFolderScreen.routeName);
+                  },
                   child: const Icon(Icons.create)),
             ),
             Visibility(

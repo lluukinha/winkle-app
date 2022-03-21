@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:winkle/Screens/Dashboard/Passwords/edit_password_screen.dart';
 
 class PasswordCard extends StatelessWidget {
   const PasswordCard({Key? key}) : super(key: key);
@@ -45,11 +46,17 @@ class PasswordCard extends StatelessWidget {
                           const CircleAvatar(
                               backgroundColor: Colors.blue, child: Text("F")),
                           const SizedBox(width: 10),
-                          const Expanded(
-                              child: Text(
-                            'Nome da senha',
-                            style: TextStyle(
-                                fontSize: 20, overflow: TextOverflow.ellipsis),
+                          Expanded(
+                              child: TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, EditPasswordScreen.routeName);
+                            },
+                            child: const Text('Nome da senha',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    overflow: TextOverflow.ellipsis)),
                           )),
                           PopupMenuButton<int>(
                             onSelected: choosePopupOption,
