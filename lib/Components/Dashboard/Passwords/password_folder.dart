@@ -34,37 +34,23 @@ class _PasswordFolderState extends State<PasswordFolder> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                      TextButton(
-                          style: folderButtonStyle(),
-                          onPressed: togglePasswords,
-                          child: Icon(toggleFolderIcon())),
-                      SizedBox(width: spaceBetweenIcons),
-                      Expanded(
-                          child: Text(
-                        'Nome da categoria grande demais da conta',
-                        style: TextStyle(fontSize: folderTextSize),
-                        overflow: TextOverflow.ellipsis,
-                      )),
-                      Text('(0)', style: TextStyle(fontSize: folderTextSize)),
-                    ])),
-                SizedBox(width: spaceBetweenIcons),
-                TextButton(
-                    style: folderButtonStyle(),
-                    onPressed: null,
-                    child: const Icon(Icons.delete))
-              ],
+            ListTile(
+              leading: TextButton(
+                style: folderButtonStyle(),
+                onPressed: togglePasswords,
+                child: Icon(toggleFolderIcon()),
+              ),
+              title: Text("Folder name (0)",
+                  style: TextStyle(fontSize: folderTextSize)),
+              dense: true,
+              trailing: TextButton(
+                  style: folderButtonStyle(),
+                  onPressed: null,
+                  child: const Icon(Icons.create)),
             ),
-            const SizedBox(height: 10),
             Visibility(
                 visible: isShowingPasswords,
                 child: Column(
