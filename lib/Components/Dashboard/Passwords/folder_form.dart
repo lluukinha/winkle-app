@@ -63,7 +63,7 @@ class FolderFormState extends State<FolderForm> {
                 },
                 child: const Text(
                   'Enviar',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
             ),

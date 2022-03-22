@@ -11,18 +11,39 @@ class PasswordScreen extends StatefulWidget {
 }
 
 class _PasswordScreenState extends State<PasswordScreen> {
+  final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 20),
-      child: ListView(
-        children: const [
-          PasswordFolder(),
-          PasswordFolder(),
-          PasswordFolder(),
-          PasswordFolder()
-        ],
-      ),
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child: TextField(
+            textAlign: TextAlign.center,
+            controller: searchController,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              suffixIcon: const Icon(Icons.search),
+              hintText: 'Pesquise aqui',
+              hintStyle: const TextStyle(fontSize: 16),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  width: 0,
+                  style: BorderStyle.none,
+                ),
+              ),
+              filled: true,
+              contentPadding: const EdgeInsets.all(10),
+              fillColor: Colors.grey.shade200,
+            ),
+          ),
+        ),
+        const PasswordFolder(),
+        const PasswordFolder(),
+        const PasswordFolder(),
+        const PasswordFolder()
+      ],
     );
   }
 }

@@ -115,14 +115,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             backgroundColor: HexColor(Constants.winkleDark),
             title: Text(titles[_currentIndex]),
             automaticallyImplyLeading: false,
-            actions: [
-              Visibility(
-                  visible: _currentIndex == 0,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.search),
-                  ))
-            ],
           ),
           body: GestureDetector(
               onTap: () => setCreation(false),
