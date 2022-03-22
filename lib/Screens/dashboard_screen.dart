@@ -67,34 +67,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget renderFloatingAction() {
-    if (!isCreating) {
-      return FloatingActionButton(
-          elevation: 0.0,
-          child: const Icon(Icons.add),
-          backgroundColor: HexColor(Constants.winkleDark),
-          onPressed: () => setCreation(true));
-    }
-
     return Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.pushNamed(context, CreatePasswordScreen.routeName);
-              },
-              backgroundColor: HexColor(Constants.winkleDark),
-              icon: const Icon(Icons.key),
-              label: const Text('Nova senha')),
+          Visibility(
+            visible: isCreating,
+            child: FloatingActionButton.extended(
+                heroTag: null,
+                onPressed: () {
+                  Navigator.pushNamed(context, CreatePasswordScreen.routeName);
+                },
+                backgroundColor: HexColor(Constants.winkleDark),
+                icon: const Icon(Icons.key),
+                label: const Text('Nova senha')),
+          ),
           const SizedBox(height: 10),
-          FloatingActionButton.extended(
-            icon: const Icon(Icons.create_new_folder),
-            label: const Text("Nova categoria"),
-            onPressed: () =>
-                {Navigator.pushNamed(context, CreateFolderScreen.routeName)},
-            backgroundColor: HexColor(Constants.winkleDark),
-            heroTag: null,
-          )
+          Visibility(
+            visible: isCreating,
+            child: FloatingActionButton.extended(
+              icon: const Icon(Icons.create_new_folder),
+              label: const Text("Nova categoria"),
+              onPressed: () =>
+                  {Navigator.pushNamed(context, CreateFolderScreen.routeName)},
+              backgroundColor: HexColor(Constants.winkleDark),
+              heroTag: null,
+            ),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+              heroTag: null,
+              child: const Icon(Icons.add),
+              backgroundColor: HexColor(Constants.winkleDark),
+              onPressed: () => setCreation(!isCreating))
         ]);
   }
 

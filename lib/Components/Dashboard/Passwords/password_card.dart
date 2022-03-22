@@ -99,17 +99,17 @@ class PasswordCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton.icon(
-                            icon: const Icon(Icons.copy),
+                            icon: const Icon(Icons.copy, size: 14),
                             label: const Text("Login"),
                             onPressed: null),
                         ElevatedButton.icon(
-                            icon: const Icon(Icons.copy),
+                            icon: const Icon(Icons.copy, size: 14),
                             label: const Text("Senha"),
                             onPressed: null),
                         ElevatedButton.icon(
                             style:
                                 ElevatedButton.styleFrom(primary: Colors.red),
-                            icon: const Icon(Icons.delete_forever),
+                            icon: const Icon(Icons.delete_forever, size: 16),
                             label: const Text("Remover"),
                             onPressed: () {
                               print('remove');

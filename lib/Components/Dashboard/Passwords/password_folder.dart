@@ -35,7 +35,7 @@ class _PasswordFolderState extends State<PasswordFolder> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 5),
         child: Column(
           children: [
             ListTile(
@@ -44,8 +44,11 @@ class _PasswordFolderState extends State<PasswordFolder> {
                 onPressed: togglePasswords,
                 child: Icon(toggleFolderIcon()),
               ),
-              title: Text("Folder name (0)",
-                  style: TextStyle(fontSize: folderTextSize)),
+              title: GestureDetector(
+                onTap: togglePasswords,
+                child: Text("Folder name (0)",
+                    style: TextStyle(fontSize: folderTextSize)),
+              ),
               dense: true,
               trailing: TextButton(
                   style: folderButtonStyle(),
