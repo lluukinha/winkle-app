@@ -78,7 +78,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onPressed: () {
                   Navigator.pushNamed(context, CreatePasswordScreen.routeName);
                 },
-                backgroundColor: HexColor(Constants.winkleDark),
+                backgroundColor: HexColor(Constants.winkleBG),
                 icon: const Icon(Icons.key),
                 label: const Text('Nova senha')),
           ),
@@ -90,7 +90,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               label: const Text("Nova categoria"),
               onPressed: () =>
                   {Navigator.pushNamed(context, CreateFolderScreen.routeName)},
-              backgroundColor: HexColor(Constants.winkleDark),
+              backgroundColor: HexColor(Constants.winkleBG),
               heroTag: null,
             ),
           ),
@@ -98,7 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           FloatingActionButton(
               heroTag: null,
               child: const Icon(Icons.add),
-              backgroundColor: HexColor(Constants.winkleDark),
+              backgroundColor: HexColor(Constants.winkleBG),
               onPressed: () => setCreation(!isCreating))
         ]);
   }
