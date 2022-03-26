@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:winkle/Screens/Dashboard/Passwords/edit_password_screen.dart';
@@ -29,6 +30,17 @@ class PasswordCard extends StatelessWidget {
 
   void moveFolder(int item) {
     print(item);
+  }
+
+  void copyText(String text, BuildContext context) {
+    Clipboard.setData(ClipboardData(text: text));
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+          duration: Duration(milliseconds: 500),
+          backgroundColor: Colors.green,
+          content: Text('Texto copiado para sua área de transferência.')),
+    );
   }
 
   @override
@@ -99,21 +111,46 @@ class PasswordCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton.icon(
-                            icon: const Icon(Icons.copy, size: 14),
-                            label: const Text("Login"),
-                            onPressed: null),
+                          icon: const Icon(Icons.copy, size: 14),
+                          label: const Text("Login"),
+                          onPressed: () {
+                            copyText("your text", context);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey.shade300,
+                            onPrimary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ),
+                        ),
                         ElevatedButton.icon(
-                            icon: const Icon(Icons.copy, size: 14),
-                            label: const Text("Senha"),
-                            onPressed: null),
-                        ElevatedButton.icon(
-                            style:
-                                ElevatedButton.styleFrom(primary: Colors.red),
-                            icon: const Icon(Icons.delete_forever, size: 16),
-                            label: const Text("Remover"),
-                            onPressed: () {
-                              print('remove');
-                            })
+                          icon: const Icon(Icons.copy, size: 14),
+                          label: const Text("Senha"),
+                          onPressed: () {
+                            copyText("sua senha", context);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey.shade300,
+                            onPrimary: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          child: const Icon(Icons.delete_forever),
+                          onPressed: () {
+                            print('remove');
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red.shade100,
+                            onPrimary: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ),
+                        )
                       ],
                     )
                   ],
