@@ -16,7 +16,7 @@ class CreatePasswordScreen extends StatelessWidget {
         backgroundColor: HexColor(Constants.winkleDark),
         title: const Text("Nova senha"),
       ),
-      body: const PasswordForm(),
+      body: PasswordForm(),
     );
   }
 }

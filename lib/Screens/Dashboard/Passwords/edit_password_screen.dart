@@ -16,7 +16,7 @@ class EditPasswordScreen extends StatelessWidget {
         backgroundColor: HexColor(Constants.winkleDark),
         title: const Text("Editar senha"),
       ),
-      body: const PasswordForm(),
+      body: PasswordForm(),
     );
   }
 }
